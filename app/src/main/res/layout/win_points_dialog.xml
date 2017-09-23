@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center"
+    android:padding="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="193dp"
+    android:background="@drawable/cong_popup"
+    android:layout_weight="0.12" />
+    <TextView
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="Congrats! you get 10 points more
+share more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+     />
+
+</LinearLayout>

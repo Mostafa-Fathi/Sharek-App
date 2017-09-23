@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp
+">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/notification_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_weight=".1"
+                android:text="Someone makes a proposal on your post"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/notification_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="end"
+                android:text="At Jun 16 2017 20:52:08"
+                android:textColor="#2d52cc"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+</RelativeLayout>

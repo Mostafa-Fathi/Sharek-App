@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10sp"
+    android:padding="5dp"
+    android:orientation="horizontal">
+
+       <ImageView
+            android:id="@+id/proposalItem_image_imageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:paddingRight="3dp"
+            android:src="@drawable/blank_photo" />
+<LinearLayout
+    android:paddingLeft="5dp"
+    android:layout_toRightOf="@id/proposalItem_image_imageView"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginTop="2dp"
+        android:id="@+id/proposalItem_title_textView"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Proposal Title"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <TableLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+            <TextView
+                android:paddingRight="30dp"
+                android:layout_column="0"
+                android:id="@+id/proposalItem_duration_textView"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duration"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_column="9"
+                android:id="@+id/proposalItem_price_textView"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="price"
+                android:textColor="@color/black" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:paddingRight="30dp"
+                android:id="@+id/proposalItem_pieces_textView"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Piece"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_column="9"
+                android:id="@+id/proposalItem_from_textView"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From"
+                android:textColor="@color/black" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
+</RelativeLayout>

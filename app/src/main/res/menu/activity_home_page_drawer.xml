@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/userr"
+            android:title="My Profile" />
+       <item
+            android:id="@+id/nav_categories"
+            android:icon="@drawable/hashtag"
+            android:title="Tags" />
+        <item
+            android:id="@+id/nav_add_share"
+            android:icon="@drawable/plus"
+            android:title="Add Share" />
+        <item
+            android:id="@+id/nav_add_intrest"
+            android:icon="@drawable/plus"
+            android:title="Add Interest" />
+
+    </group>
+
+    <item android:title="Sharek Community">
+        <menu>
+            <item
+                android:id="@+id/nav_about_us"
+                android:icon="@drawable/help"
+                android:title="About Sharek" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/help"
+                android:title="Know more" />
+
+
+            <item
+                android:id="@+id/nav_contact_us"
+                android:icon="@drawable/mail"
+                android:title="Contact us" />
+
+
+        </menu>
+    </item>
+    <item
+        android:id="@+id/nav_log_out"
+        android:icon="@drawable/signout"
+        android:title="Log out" />
+
+
+</menu>
