@@ -102,9 +102,19 @@ public class Utils {
                     error = "Sorry, Registration is allowed only in Fayoum";
                 }
             }
-               else {
-                error = "Be sure that User name,email and phone are unique not used before";
-            }
+              if (errorObject.has("email")){
+                  if (errorObject.getString("email").equals("unique")) {
+                  error = "Sorry, Your email is already used ";
+              }
+              }
+               if (errorObject.has("user")){
+                   if (errorObject.getString("user").equals("unique")) {
+                       error = "Sorry, Your user name is already used ";
+                   } }
+               if (errorObject.has("phone")){
+                   if (errorObject.getString("phone").equals("unique")) {
+                       error = "Sorry, Your user phone number is already used ";
+                   } }
            }
         } catch (JSONException e) {
             e.printStackTrace();
