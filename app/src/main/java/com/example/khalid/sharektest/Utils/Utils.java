@@ -96,26 +96,106 @@ public class Utils {
 
                 }
             }
-           if(activity.toString().contains("SignUp")){
+
             if(errorObject.has("location")){
                 if (errorObject.getString("location").equals("unavailable")) {
+                    if(activity.toString().contains("SignUp")){
                     error = "Sorry, Registration is allowed only in Fayoum";
                 }
-            }
+            }}
               if (errorObject.has("email")){
                   if (errorObject.getString("email").equals("unique")) {
+                      if(activity.toString().contains("SignUp")){
                   error = "Sorry, Your email is already used ";
-              }
+              }}
               }
                if (errorObject.has("user")){
                    if (errorObject.getString("user").equals("unique")) {
+                       if(activity.toString().contains("SignUp")){
                        error = "Sorry, Your user name is already used ";
-                   } }
+                   } }}
                if (errorObject.has("phone")){
                    if (errorObject.getString("phone").equals("unique")) {
+                       if(activity.toString().contains("SignUp")){
                        error = "Sorry, Your user phone number is already used ";
-                   } }
-           }
+                   } }}
+
+
+                if(errorObject.has("title")){
+                    if (errorObject.getString("title").equals("minlength")) {
+                        if(activity.toString().contains("AddShare")){
+                        error = "Sorry, title cannot be shorter than 6 characters";
+                    }}
+                }
+                if(errorObject.has("title")){
+                    if (errorObject.getString("title").equals("maxlength")) {
+                        if(activity.toString().contains("AddShare")){
+                        error = "Sorry, title cannot be longer than 100 characters";
+                    }}
+                }
+
+                if(errorObject.has("description")){
+                    if (errorObject.getString("description").equals("maxlength")) {
+                        if(activity.toString().contains("AddShare")){
+                        error = "Sorry, cannot be longer than 1000 characters";
+                    }}
+                }
+                if(errorObject.has("description")){
+                    if (errorObject.getString("title").equals("minlength")) {
+                        if(activity.toString().contains("AddShare")){
+                        error = "Sorry, cannot be longer than 10 characters";
+                    }}
+                }
+            if(errorObject.has("price")){
+                if (errorObject.getString("price").equals("max")) {
+                    if(activity.toString().contains("AddShare")){
+                        error = "Sorry, cannot be more than 100";
+                    }}
+            }
+            if(errorObject.has("price")){
+                if (errorObject.getString("price").equals("min")) {
+                    if(activity.toString().contains("AddShare")){
+                        error = "Sorry, cannot be less than 0";
+                    }}
+            }
+            if(errorObject.has("title")){
+                if (errorObject.getString("title").equals("minlength")) {
+                    if(activity.toString().contains("addinterest")){
+                        error = "Sorry, title cannot be shorter than 6 characters";
+                    }}
+            }
+            if(errorObject.has("title")){
+                if (errorObject.getString("title").equals("maxlength")) {
+                    if(activity.toString().contains("addinterest")){
+                        error = "Sorry, title cannot be longer than 100 characters";
+                    }}
+            }
+
+            if(errorObject.has("description")){
+                if (errorObject.getString("description").equals("maxlength")) {
+                    if(activity.toString().contains("addinterest")){
+                        error = "Sorry, cannot be longer than 1000 characters";
+                    }}
+            }
+            if(errorObject.has("description")){
+                if (errorObject.getString("title").equals("minlength")) {
+                    if(activity.toString().contains("addinterest")){
+                        error = "Sorry, cannot be longer than 10 characters";
+                    }}
+            }
+            if(errorObject.has("price")){
+                if (errorObject.getString("price").equals("max")) {
+                    if(activity.toString().contains("addinterest")){
+                        error = "Sorry, cannot be more than 100";
+                    }}
+            }
+            if(errorObject.has("price")){
+                if (errorObject.getString("price").equals("min")) {
+                    if(activity.toString().contains("addinterest")){
+                        error = "Sorry, cannot be less than 0";
+                    }}
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

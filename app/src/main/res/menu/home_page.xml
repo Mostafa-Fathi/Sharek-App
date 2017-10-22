@@ -9,7 +9,7 @@
         android:title="Help" />
     <item
         android:id="@+id/action_refresh"
-        android:icon="@drawable/reload"
+        android:icon="@drawable/ic_refresh_white_24dp"
         android:orderInCategory="100"
         android:title="Refresh"
         app:showAsAction="always" />
