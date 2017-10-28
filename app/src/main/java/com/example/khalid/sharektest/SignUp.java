@@ -1,6 +1,8 @@
 package com.example.khalid.sharektest;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,10 +21,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.DatePicker;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.support.v7.app.AppCompatActivity;
+
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
@@ -37,6 +45,8 @@ import com.example.khalid.sharektest.tour.tour_welcome;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -44,10 +54,24 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
     private static final int REQUEST_TAKE_poster_PHOTO = 1;
     //private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0x8000000;
     private static int REQUEST_LOAD_poster_IMAGE = 2;
-    EditText fname, lname, uname, email, phone, day, year, month, pass, repass, work, haddress;
+    EditText fname;
+    EditText lname;
+    EditText uname;
+    EditText email;
+    EditText phone;
+    TextView day;
+    TextView year;
+    TextView month;
+    EditText pass;
+    EditText repass;
+    EditText work;
+    EditText haddress;
+    int dpyear , dpday,dpmonth;
+    static final int Did=0;
+
     TextView limit_haddress, limit_phone, limit_pass, limit_mail, limit_username;
     Spinner gender;
-    Button sign, getlocation, uploadNationalID;
+    Button sign, getlocation, uploadNationalID,datebtn;
     String genderitem;
     double latitude = 0, longitude = 0;
     JSONObject jsonObject;
@@ -71,9 +95,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
         email.setOnClickListener(this);
         phone = (EditText) findViewById(R.id.signup_phone_editText);
         phone.setOnClickListener(this);
-        day = (EditText) findViewById(R.id.signup_day_editText);
-        year = (EditText) findViewById(R.id.signup_year_editText);
-        month = (EditText) findViewById(R.id.signup_month_editText);
+        day = (TextView) findViewById(R.id.signup_day_editText);
+        year = (TextView) findViewById(R.id.signup_year_editText);
+        month = (TextView) findViewById(R.id.signup_month_editText);
         pass = (EditText) findViewById(R.id.signup_password_editText);
         pass.setOnClickListener(this);
         repass = (EditText) findViewById(R.id.signup_repassword_editText2);
@@ -91,6 +115,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
         sign.setOnClickListener(this);
         getlocation.setOnClickListener(this);
         uploadNationalID.setOnClickListener(this);
+        datebtn=(Button)findViewById(R.id.button4);
+        datebtn.setOnClickListener(this);
 
         SpinnerCustomArrayAdapter genderarr = new SpinnerCustomArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item);
 
@@ -103,9 +129,34 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
         gender.setSelection(genderarr.getCount());
         getLocationBtnClicked = false;
         checkLocationPermission();
+        final Calendar cal = Calendar.getInstance();
+        dpyear=cal.get(Calendar.YEAR);
+        dpmonth=cal.get(Calendar.MONTH);
+        dpday=cal.get(Calendar.DAY_OF_MONTH);
 
 
     }
+    @Override
+    protected Dialog onCreateDialog(int id){
+        if (id ==Did ){DatePickerDialog c = new DatePickerDialog( this,dlistener ,dpyear , dpmonth, dpday);
+            c.getDatePicker().setMaxDate(new Date().getTime());
+            return c;}
+        else return null;
+
+
+    }
+    private DatePickerDialog.OnDateSetListener dlistener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            dpyear=i;
+            dpmonth=i1+1;
+            dpday=i2;
+            year.setText(Integer.toString(dpyear));
+            month.setText(Integer.toString(dpmonth));
+            day.setText(Integer.toString(dpday));
+
+        }
+    };
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -120,6 +171,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
 
     @Override
     public void onClick(View v) {
+        if (v==datebtn){  showDialog(Did);}
         if (v == getlocation) {
             GPSTracker gps = new GPSTracker(this);
             if (gps.isGPSEnabled) {
@@ -170,9 +222,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                                                             + "},"
                                                             + "\"email\":" + "\"" + email.getText().toString() + "\"" + ","
                                                             + "    \"birth\": {"
-                                                            + "\"day\":" + "\"" + day.getText().toString() + "\"" + ","
-                                                            + "        \"month\":" + "\"" + month.getText().toString() + "\"" + ","
-                                                            + "        \"year\":" + "\"" + year.getText().toString() + "\""
+                                                            + "\"day\":" + "\"" + Integer.toString(dpday) + "\"" + ","
+                                                            + "        \"month\":" + "\"" + Integer.toString(dpmonth) + "\"" + ","
+                                                            + "        \"year\":" + "\"" + Integer.toString(dpyear) + "\""
                                                             + "} ,"
                                                             + "\"location\": {"
                                                             + "\"latitude\":" + "\"" + latitude + "\"" + ","
@@ -255,6 +307,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
                                                 }
                                             };
                                             AppController.getInstance().addToRequestQueue(req);
+                                            Log.d("r",params_Date);
                                         } else {
                                             Toast.makeText(this, "Review your Data and Recheck your Location", Toast.LENGTH_LONG).show();
                                         }
@@ -409,4 +462,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener, A
 
         }
     }
+
+
 }

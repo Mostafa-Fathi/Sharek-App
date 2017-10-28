@@ -130,9 +130,10 @@ public class Tab3 extends android.support.v4.app.Fragment implements AdapterView
             @Override
             public void onErrorResponse(VolleyError error) {
 //               Log.i("Error: ", error.getMessage());
+                if (error!=null){
                 Toast.makeText(getContext(), "you cannot connect to the internet", Toast.LENGTH_LONG).show();
 //                pDialog.hide();
-            }
+            }}
         }) {
 
             public String getBodyContentType() {

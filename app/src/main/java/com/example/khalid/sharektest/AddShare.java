@@ -1,6 +1,8 @@
 package com.example.khalid.sharektest;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,8 +18,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -33,17 +37,26 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 public class AddShare extends AppCompatActivity implements View.OnClickListener {
 
     private static final int REQUEST_TAKE_poster_PHOTO = 1;
     private static int REQUEST_LOAD_poster_IMAGE = 2;
-    EditText interestTitle, pieces, startDate, description, duration, tags, price, endDate, guarantee;
+    EditText interestTitle;
+    EditText pieces;
+    TextView startDate;
+    EditText description;
+    EditText duration;
+    EditText tags;
+    EditText price;
+    TextView endDate;
+    EditText guarantee;
     //    Spinner gender,catagory;
     CheckBox agreement;
     Switch negotiable;
-    Button post, addImage;
+    Button post, addImage,startDateD;
     //ProgressDialog pDialog;
    // Boolean check;
     //    String genderitem, catitem;
@@ -51,6 +64,8 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
     String token;
     Bitmap photo = null;
     ProgressDialog loading;
+    int syear , sday,smonth;
+    static final int sid=0;
 
 
 
@@ -62,10 +77,11 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         interestTitle = (EditText) findViewById(R.id.addShare_editText_Title);
         pieces = (EditText) findViewById(R.id.addShare_editText_Pieces);
-        startDate = (EditText) findViewById(R.id.addShare_editText_fromDate);
         description = (EditText) findViewById(R.id.addShare_editText_Description);
         duration = (EditText) findViewById(R.id.addShare_editText_Duration);
-        endDate = (EditText) findViewById(R.id.addShare_editText_toDate);
+        startDateD= (Button) findViewById(R.id.addShare_Button_fromDate);
+        startDate=(TextView)findViewById(R.id.addShare_Text_fromDate);
+        startDateD.setOnClickListener(this);
         price = (EditText) findViewById(R.id.addShare_editText_price);
         guarantee = (EditText) findViewById(R.id.addShare_editText_guarantee);
         post = (Button) findViewById(R.id.addShare_button_postShare);
@@ -89,9 +105,33 @@ public class AddShare extends AppCompatActivity implements View.OnClickListener 
 
 
     }
+    @Override
+    protected Dialog onCreateDialog(int id){
+        if (id ==sid ){DatePickerDialog c = new DatePickerDialog( this,dlistener ,syear , smonth, sday);
+            c.getDatePicker().setMinDate(new Date().getTime());
+            return c;}
+
+
+        else return null;
+
+
+    }
+    private DatePickerDialog.OnDateSetListener dlistener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            syear=i;
+            smonth=i1+1;
+            sday=i2;
+            startDate.setText(Integer.toString(sday)+" / "+Integer.toString(smonth)+" / "+Integer.toString(syear));
+
+        }
+    };
+
 
     @Override
     public void onClick(View v) {
+        if (v==startDateD){ showDialog(sid);}
+
         if (v == post) {
             loading.show();
             if (description.getText().toString().length()>12) {
